@@ -13,6 +13,23 @@ buildscript {
     }
 }
 
+plugins {
+    id "com.diffplug.spotless" version "6.4.2"
+}
+
 task clean(type: Delete) {
     delete rootProject.buildDir
+}
+
+allprojects {
+    apply plugin: "com.diffplug.spotless"
+
+    //This can also be in a separate spotless.gradle file in project root..
+    spotless {
+        kotlin {
+            target "**/*.kt"
+            ktlint()
+            ktfmt().dropboxStyle()
+        }
+    }
 }

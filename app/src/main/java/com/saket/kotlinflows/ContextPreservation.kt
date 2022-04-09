@@ -6,7 +6,6 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.runBlocking
 
-
 /*
 Context preservation property of flows:
 Collection of flows always happens in the context
@@ -29,21 +28,17 @@ its context.
  */
 
 fun testFlowOnOperator() {
-    runBlocking {
-        cityFlow()
-            .collect {
-                println("collecting $it on ${Thread.currentThread()}")
-            }
-    }
+    runBlocking { cityFlow().collect { println("collecting $it on ${Thread.currentThread()}") } }
 }
 
 private fun cityFlow(): Flow<String> {
     val cities = listOf("Mumbai", "Delhi", "Bangalore", "Pune", "Kolkata")
     return flow {
-        for (city in cities) {
-            Thread.sleep(1000)
-            println("emit $city on ${Thread.currentThread()}")
-            emit(city)
+            for (city in cities) {
+                Thread.sleep(1000)
+                println("emit $city on ${Thread.currentThread()}")
+                emit(city)
+            }
         }
-    }.flowOn(Dispatchers.Default)
+        .flowOn(Dispatchers.Default)
 }
