@@ -1,4 +1,4 @@
-package com.saket.kotlinflows
+package com.saket.kotlinflows.operators
 
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.asFlow

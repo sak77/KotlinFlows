@@ -1,4 +1,4 @@
-package com.saket.kotlinflows
+package com.saket.kotlinflows.hotflows
 
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

@@ -1,4 +1,4 @@
-package com.saket.kotlinflows
+package com.saket.kotlinflows.coreproperties
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -8,23 +8,19 @@ import kotlinx.coroutines.runBlocking
 
 /*
 Context preservation property of flows:
-Collection of flows always happens in the context
-of the calling coroutine.
+Collection of flows always happens in the context of the calling coroutine.
 
 The issue with withContext():
-withContext() can be used to change the context
-for Coroutines. However the flow builder has
-to honor the context preservation property and
-is not allowed to emit from a different context.
+withContext() can be used to change the context for Coroutines. However the flow
+builder has to honor the context preservation property and is not allowed to emit
+from a different context.
 
 To fix this, we use the flowOn() operator:
-flowOn() operator allows to change the context
-of the flow emission. While context of collection
-of flow still happens by the calling function.
+flowOn() operator allows to change the context of the flow emission. While context
+of collection of flow still happens by the calling function.
 
-flowOn operator creates another coroutine for upstream
-flow when it has to change CoroutineDispatcher in
-its context.
+flowOn operator creates another coroutine for upstream flow when it has to change
+CoroutineDispatcher in its context.
  */
 
 fun testFlowOnOperator() {

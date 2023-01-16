@@ -1,4 +1,4 @@
-package com.saket.kotlinflows
+package com.saket.kotlinflows.operators
 
 /*
 Terminal flow operators:

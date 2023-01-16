@@ -1,4 +1,4 @@
-package com.saket.kotlinflows
+package com.saket.kotlinflows.operators
 
 import kotlinx.coroutines.flow.asFlow
 import kotlinx.coroutines.flow.flatMapConcat
@@ -8,14 +8,17 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.runBlocking
 
 /**
- * Flows represent asynchronously received sequences of values, so it is quite easy to get in a
- * situation where each value triggers a request for another sequence of values.
+ * Flows represent asynchronously received sequences of values, so it is quite easy
+ * to get in a situation where each value triggers a request for another sequence of
+ * values.
  *
- * For example, we can have the following function that returns a flow of two strings 500 ms apart:
+ * For example, we can have the following function that returns a flow of two strings
+ * 500ms apart:
  *
- * fun requestFlow(i: Int): Flow<String> = flow { emit("$i: First") delay(500) // wait 500 ms
- * emit("$i: Second") } Now if we have a flow of three integers and call requestFlow for each of
- * them like this: (1..3).asFlow().map { requestFlow(it) }
+ * fun requestFlow(i: Int): Flow<String> = flow { emit("$i: First") delay(500)
+ * // wait 500ms
+ * emit("$i: Second") } Now if we have a flow of three integers and call requestFlow for
+ * each of them like this: (1..3).asFlow().map { requestFlow(it) }
  *
  * Then we end up with a flow of flows (Flow<Flow<String>>) that needs to be flattened into a single
  * flow for further processing.

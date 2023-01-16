@@ -2,18 +2,13 @@ package com.saket.kotlinflows
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.saket.kotlinflows.builders.builder_channelFlow
+import com.saket.kotlinflows.coreproperties.catchDeclaratively
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
-/**
- * The purpose of this app is to explore Kotlin flows.
- *
- * Flow builders Flow Collectors Intermediate methods Transforms Combining flows
- *
- * Flows vs Coroutines Flows and reactive streams
- */
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

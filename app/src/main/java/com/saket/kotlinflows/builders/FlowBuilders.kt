@@ -1,5 +1,6 @@
-package com.saket.kotlinflows
+package com.saket.kotlinflows.builders
 
+import com.saket.kotlinflows.operators.DummyCallback
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.NonCancellable
@@ -45,14 +46,11 @@ fun builder_asFlow(): Flow<String> =
 /*
 produces cold flows.
 Uses Producer to send data to subscribers.
-channelFlow builder ensures thread-safety and
-context preservation, so it allows to send data produced by code
-blocks running concurrently in different contexts.
-it returns a FLow that completes as soon as the code in the block and
-all its children completes.
-Use awaitClose as the last statement to keep flow running until
-consumer cancels flow collection, or the
-callback based api calls SendChannel.close.
+channelFlow builder ensures thread-safety and context preservation, so it allows to
+send data produced by code blocks running concurrently in different contexts.
+it returns a FLow that completes as soon as the code in the block and all its children
+completes. Use awaitClose as the last statement to keep flow running until consumer
+cancels flow collection, or the callback based api calls SendChannel.close.
  */
 fun builder_channelFlow() = channelFlow {
     // Launch coroutine to send data from one coroutine

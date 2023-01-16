@@ -1,4 +1,4 @@
-package com.saket.kotlinflows
+package com.saket.kotlinflows.operators
 
 import kotlin.system.measureTimeMillis
 import kotlinx.coroutines.delay
@@ -7,9 +7,9 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.runBlocking
 
 /**
- * It may not be necessary to process each value, but instead, only most recent ones. In this case,
- * the conflate operator can be used to skip intermediate values when a collector is too slow to
- * process them.
+ * It may not be necessary to process each value, but instead, only most recent ones.
+ * In this case, the conflate operator can be used to skip intermediate values when
+ * a collector is too slow to process them.
  */
 fun testFlowConflation() {
     val time = measureTimeMillis {

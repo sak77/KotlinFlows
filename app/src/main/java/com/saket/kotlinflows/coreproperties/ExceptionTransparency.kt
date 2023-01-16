@@ -1,4 +1,4 @@
-package com.saket.kotlinflows
+package com.saket.kotlinflows.coreproperties
 
 import java.lang.Exception
 import java.lang.IllegalStateException
@@ -13,9 +13,8 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 
 /*
-A flow collector can use a try/catch block to catch
-exceptions. This catches any exceptions that happens
-in the emitter or any intermediate or terminal operators.
+A flow collector can use a try/catch block to catch exceptions. This catches any
+exceptions that happens in the emitter or any intermediate or terminal operators.
  */
 fun useTryCatchInFlowCollector() {
     // Strangely, this does not work with launchIn operator..
