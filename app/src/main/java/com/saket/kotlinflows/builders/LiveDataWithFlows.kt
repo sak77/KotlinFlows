@@ -33,4 +33,4 @@ for any other reason (e.g. throwing a CancellationException), it is not restarte
 https://developer.android.com/topic/libraries/architecture/coroutines#livedata
  */
 
-class User(val name: String, val id: Int)
+data class User(val name: String, val id: Int)

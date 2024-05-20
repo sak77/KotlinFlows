@@ -2,18 +2,32 @@ package com.saket.kotlinflows
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.saket.kotlinflows.builders.builder_channelFlow
+import com.saket.kotlinflows.builders.builder_flow
 import com.saket.kotlinflows.coreproperties.catchDeclaratively
+import com.saket.kotlinflows.coreproperties.testFlowOnOperator
+import com.saket.kotlinflows.hotflows.DownloadStatus
+import com.saket.kotlinflows.hotflows.mockDataDownload
+import com.saket.kotlinflows.hotflows.state
+import com.saket.kotlinflows.operators.combineFlows
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        catchDeclaratively()
+        //catchDeclaratively()
+        //test_coldflow_builders()
+        testFlowOnOperator()
+        //combineFlows()
     }
 
     fun test_coldflow_builders() {
@@ -60,4 +74,28 @@ class MainActivity : AppCompatActivity() {
             .launchIn(CoroutineScope(Dispatchers.Default))
          */
     }
+
+    /*
+    collect can be called more than once inside a coroutine.
+    But if we are collecting a stateflow, it appears we can only collect once per coroutine.
+     */
+    fun collect_stateflow() {
+        lifecycleScope.launch {
+            lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                launch {
+                    state.collect {
+                        println("First COllector Download status $it")
+                    }
+                }
+
+                launch {
+                    state.collect {
+                        println("Second COllector Download status $it")
+                    }
+                }
+            }
+        }
+        mockDataDownload()
+    }
+
 }
